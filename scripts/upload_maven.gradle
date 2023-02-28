@@ -1,15 +1,10 @@
 apply plugin: 'maven-publish'
 
-def GROUP_ID = "com.github.XiongKe94"
-def ARTIFACT_ID = "YouTubeView"
-
 project.afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = GROUP_ID
-                artifactId = ARTIFACT_ID
                 artifacts {
                     archives androidSourcesJar
                     archives androidJavadocsJar
