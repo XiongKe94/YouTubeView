@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
+
 apply from: "${rootProject.projectDir}/scripts/upload_maven.gradle"
 
 def buildConfig = rootProject.ext.buildConfig
