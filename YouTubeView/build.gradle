@@ -31,7 +31,7 @@ dependencies {
     api "com.google.android.material:material:$buildConfig.google_material"
     api "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 }
-
+ 
 task androidSourcesJar(type: Jar) {
     classifier 'sources'
     from android.sourceSets.main.java.srcDirs
