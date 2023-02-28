@@ -33,7 +33,7 @@ android {
         }
     }
 }
-
+ 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.aar", "*.jar"], exclude: [])
     implementation project(path: ':YouTubeView')
