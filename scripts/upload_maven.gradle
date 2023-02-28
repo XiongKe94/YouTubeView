@@ -2,8 +2,6 @@ apply plugin: 'maven-publish'
 
 def GROUP_ID = "com.github.XiongKe94"
 def ARTIFACT_ID = "YouTubeView"
-def VERSION = "1.0.0"
-def pomName = "${GROUP_ID}-${ARTIFACT_ID}-${VERSION}"
 
 project.afterEvaluate {
     publishing {
@@ -11,16 +9,11 @@ project.afterEvaluate {
             release(MavenPublication) {
                 from components.release
                 groupId = GROUP_ID
-                //建议和github仓库名称对应，否则对jitpack无效
                 artifactId = ARTIFACT_ID
-                //建议和release的tag相同，否则对jitpack无效
-                version = VERSION
                 artifacts {
                     archives androidSourcesJar
                     archives androidJavadocsJar
                 }
-
-                println " upload finish pomName =  ${pomName}"
             }
         }
     }
