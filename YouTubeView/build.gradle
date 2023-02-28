@@ -1,0 +1,32 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+def buildConfig = rootProject.ext.buildConfig
+def libConfig = rootProject.ext.libConfig
+android {
+    compileSdkVersion buildConfig.compileSdkVersion as int
+
+    defaultConfig {
+        minSdkVersion buildConfig.minSdkVersion as int
+        targetSdkVersion buildConfig.targetSdkVersion as int
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    buildTypes {
+        debug {
+
+        }
+        beta {
+        }
+    }
+}
+
+dependencies {
+    api "androidx.core:core-ktx:$buildConfig.kotlin_ktx_core"
+    api "androidx.appcompat:appcompat:$buildConfig.androidx_appcompat"
+    api "com.google.android.material:material:$buildConfig.google_material"
+    api "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+}

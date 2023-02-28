@@ -1,0 +1,3 @@
+rootProject.name = "YouTubeView"
+include ':app'
+include ':YouTubeView'

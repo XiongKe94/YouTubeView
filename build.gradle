@@ -1,0 +1,77 @@
+buildscript {
+    apply from: "${rootProject.projectDir}/scripts/version_config.gradle"
+    apply from: "${rootProject.projectDir}/scripts/common_utils.gradle"
+    def libConfig = rootProject.ext.libConfig
+
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.4"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31"
+        classpath 'com.google.gms:google-services:4.3.14'
+    }
+}
+
+allprojects {
+
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            allowInsecureProtocol = true
+            url 'https://jitpack.io'
+        }
+
+        maven {
+            allowInsecureProtocol = true
+            //url "https://maven.google.com"
+            url 'https://dl.google.com/dl/android/maven2/'
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "https://maven.aliyun.com/repository/public"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url 'https://maven.aliyun.com/repository/google'
+        }
+        maven {
+            allowInsecureProtocol = true
+            url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
+        }
+        maven {
+            allowInsecureProtocol = true
+            url 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "http://mirrors.cloud.tencent.com/nexus/repository/maven-public/"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url 'https://artifacts.applovin.com/android'
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "https://android-sdk.is.com"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "https://artifact.bytedance.com/repository/pangle"
+        }
+        maven {
+            allowInsecureProtocol = true
+            url "https://sdk.tapjoy.com"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,38 @@
+gradle.allprojects {
+    ext.isLinux = {
+        def currentOs = org.gradle.internal.os.OperatingSystem.current()
+        println("os.OperatingSystem: $currentOs")
+        return currentOs.isLinux()
+    }
+
+    ext.getCurrentTime = {
+        return new Date().format("yyyy-MM-dd HH-mm")
+    }
+
+    ext.getOutputFileCurrentTime = {
+        return new Date().format("yyyy-MM-dd_HH-mm")
+    }
+
+    ext.getGitVersionSuffix = {
+        String gitVersionSuffix = ""
+        try {
+            // .git/HEAD描述当前目录所指向的分支信息，内容示例："ref: refs/heads/master\n"
+            def headFile = new File('.git/HEAD')
+            if (headFile.exists()) {
+                String[] strings = headFile.getText('UTF-8').split(" ");
+                if (strings.size() > 1) {
+                    String refFilePath = '.git/' + strings[1];
+                    // 根据HEAD读取当前指向的hash值，路径示例为：".git/refs/heads/master"
+                    def refFile = new File(refFilePath.replace("\n", ""));
+                    // 索引文件内容为hash值+"\n"，
+                    // 示例："90312cd9157587d11779ed7be776e3220050b308\n"
+                    gitVersionSuffix = refFile.getText('UTF-8').substring(0, 7)
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace()
+        }
+        println("gitVersionSuffix: $gitVersionSuffix")
+        return headGitVersion
+    }
+}

@@ -1,0 +1,46 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlin-parcelize"
+    id "kotlin-kapt"
+}
+def buildConfig = rootProject.ext.buildConfig
+def libConfig = rootProject.ext.libConfig
+android {
+    compileSdkVersion buildConfig.compileSdkVersion as int
+
+    defaultConfig {
+        applicationId "com.carl.youtbeview.demo"
+        minSdkVersion buildConfig.minSdkVersion as int
+        targetSdkVersion buildConfig.targetSdkVersion as int
+        versionCode buildConfig.versionCode as int
+        versionName buildConfig.versionName
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ["src/main/libs"]
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.aar", "*.jar"], exclude: [])
+    implementation project(path: ':YouTubeView')
+    implementation "androidx.core:core-ktx:$buildConfig.kotlin_ktx_core"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1"
+    implementation "androidx.multidex:multidex:2.0.1"
+    implementation "androidx.appcompat:appcompat:$buildConfig.androidx_appcompat"
+    implementation "com.google.android.material:material:$buildConfig.google_material"
+}
